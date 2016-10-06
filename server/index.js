@@ -1,10 +1,10 @@
-'use strict'
-
+'use strict';
+require('./config/db.js');
 const express = require('express');
+const port = process.env.PORT || 3000;
+
 const app = express();
 
-console.log("THIS WORKS inside of the server!");
-
-app.listen(3000, () => {
-    console.log('Listening on: http://localhost:3000');
+app.listen(port, () => {
+    console.log('Listening on: http://localhost: ', port);
 });

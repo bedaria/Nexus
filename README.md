@@ -1,3 +1,13 @@
 # Nexus
 
-![screen shot 2016-10-06 at 10 33 00 am](https://cloud.githubusercontent.com/assets/11032490/19163833/63646a70-8bb2-11e6-8e18-aaf965658c79.png)
+In an effort to streamline the daily interactions between teachers, fellows and students, our dashboard provides all of the calendars, announcements, documents onto one dashboard. 
+
+Technologies:
+Angular2
+Node
+Express
+Sequelize
+PostgreSQL
+
+Schema Outline:
+![screen shot 2016-10-06 at 12 37 13 pm](https://cloud.githubusercontent.com/assets/11032490/19167691/b09926e6-8bc1-11e6-87e5-6d75ebf31405.png)
