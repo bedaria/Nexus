@@ -9,12 +9,6 @@ const ToDo = connection.define('user', {
   userId: {
     type: Sequelize.INTEGER,
   },
-  timeCreated: {
-    type: Sequelize.DATE,
-  },
-  lastEdit: {
-    type: Sequelize.DATE,
-  },
-}
+});
 
 module.exports = ToDo;

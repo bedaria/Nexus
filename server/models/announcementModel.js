@@ -8,12 +8,6 @@ const Announcement = connection.define('user', {
   cohortId: {
     type: Sequelize.INTEGER,
   },
-  timeCreated: {
-    type: Sequelize.DATE,
-  },
-  lastEdit: {
-    type: Sequelize.DATE,
-  },
 })
 
 module.exports = Announcement;
