@@ -1,6 +1,6 @@
 # Nexus
 
-In an effort to streamline the daily interactions between teachers, felllows and students, our dashboard provides all of the calendars, announcements, documents onto one dashboard. 
+In an effort to streamline the daily interactions between teachers, fellows and students, our dashboard provides all of the calendars, announcements, documents onto one dashboard. 
 
 Technologies:
 Angular2
