@@ -1,7 +1,7 @@
-const Users = require('../models/userModel');
-const ToDos = require('../models/toDoModel');
-const Announcements = require('../models/announcementsModel');
-const Cohorts = require('../models/cohortModel');
+const User = require('../models/userModel');
+const ToDo = require('../models/toDoModel');
+const Announcement = require('../models/announcementModel');
+const Cohort = require('../models/cohortModel');
 
 connection
   .sync()
@@ -9,8 +9,8 @@ connection
   .catch(err => console.log('An error occurred while creating the table:', err));
 
 module.exports = {
-  Users,
-  ToDos
-  Announcements,
-  Cohorts
+  User,
+  ToDo,
+  Announcement,
+  Cohort
 }

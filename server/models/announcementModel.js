@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/db');
 
-const ToDo = connection.define('user', {
-  toDo: {
+const Annoucement = connection.define('user', {
+  announcement: {
     type: Sequelize.VARCHAR,
-
   },
-  userId: {
+  cohortId: {
     type: Sequelize.INTEGER,
   },
   timeCreated: {
@@ -17,4 +16,4 @@ const ToDo = connection.define('user', {
   },
 }
 
-module.exports = ToDo;
+module.exports = Annoucement;
