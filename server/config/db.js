@@ -1,19 +1,9 @@
-const Sequlize = require('sequelize');
+const Sequelize = require('sequelize');
 require('dotenv').config();
 
 const connection = new Sequelize(
-  process.env.db_name,
-  process.env.db_user,
-  process.env.db_pass,
-  {
-    host: process.env.db_host,
-    dialect: process.env.db_type,
-    port: process.env.db_port,
-    logging: false,
-    options: {
-      timezone: 'America/Los_Angeles'
-    }
-  });
+  'postgres://[process.env.db_user]:[process.env.db_pass]@aws-us-east-1-portal.23.dblayer.com:15898/compose'
+);
 
 connection
   .authenticate()

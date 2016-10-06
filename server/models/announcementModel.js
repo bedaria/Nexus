@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/db');
 
-const Annoucement = connection.define('user', {
+const Announcement = connection.define('user', {
   announcement: {
     type: Sequelize.VARCHAR,
   },
@@ -14,6 +14,6 @@ const Annoucement = connection.define('user', {
   lastEdit: {
     type: Sequelize.DATE,
   },
-}
+})
 
-module.exports = Annoucement;
+module.exports = Announcement;
