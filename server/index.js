@@ -1,5 +1,6 @@
 'use strict';
 require('./models/models.js');
+const db = ('.config/db.js');
 
 const express = require('express');
 const port = process.env.PORT || 3000;

@@ -6,7 +6,6 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve & nodemon bin/entry.js",
-    "start:server": "nodemon bin/entry.js",
     "lint": "npm run lint:client; npm run lint:server",
     "lint:client": "tslint \"src/**/*.ts\"",
     "lint:server": "eslint \"server/**/*.js\"",
