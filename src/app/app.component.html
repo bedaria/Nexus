@@ -2,6 +2,11 @@
   <div class="row">
     <div class="col-xs-10">
       <h1>{{title}}</h1>
+      <hr>
+      <a [routerLink]="['']"> ~ Home ~</a>
+      <a [routerLink]="['/signup']">Sign Up ~ </a>
+      <a [routerLink]="['/login']">Login ~</a>
+      <hr>
       <router-outlet></router-outlet>
     </div>
   </div>
