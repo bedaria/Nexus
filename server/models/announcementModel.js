@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const connection = require('../config/db');
 
-const Announcement = connection.define('user', {
+const Announcement = connection.define('announcement', {
   announcement: {
-    type: Sequelize.VARCHAR,
+    type: Sequelize.STRING,
   },
   cohortId: {
     type: Sequelize.INTEGER,
