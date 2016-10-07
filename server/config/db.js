@@ -8,6 +8,6 @@ const connection = new Sequelize(
 connection
   .authenticate()
   .then(err => console.log('\033[34mSequelize connected. \033[0m') )
-.catch(err => console.log('Unable to connect to the database:', err) );
+  .catch(err => console.log('Unable to connect to the database:', err) );
 
 module.exports = connection;

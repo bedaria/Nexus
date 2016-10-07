@@ -10,4 +10,4 @@ Sequelize
 PostgreSQL
 
 Schema Outline:
-![screen shot 2016-10-06 at 12 37 13 pm](https://cloud.githubusercontent.com/assets/11032490/19167691/b09926e6-8bc1-11e6-87e5-6d75ebf31405.png)
+![screen shot 2016-10-07 at 3 15 45 pm](https://cloud.githubusercontent.com/assets/11032490/19206903/1029beec-8ca1-11e6-8e9d-64bf0c72598d.png)

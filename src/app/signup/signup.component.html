@@ -1,0 +1,76 @@
+<h2>Sign Up</h2>
+<form (ngSubmit)="onSubmit(f)" #f="ngForm">
+  <div ngModelGroup="userData">
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="firstName"
+        [(ngModel)]="user.firstName"
+        name="firstName"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="lastName"
+        [(ngModel)]="user.lastName"
+        name="lastName"
+        required>
+    </div>
+    <label>Cohort</label>
+    <div class="btn-group" dropdown >
+      <button id="dropdown-list" type="button" class="btn form-control" dropdownToggle >
+        Button dropdown <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu">
+        <li role="menuitem">Audi</li>
+        <li role="menuitem">BMW</li>
+        <li role="menuitem">Mercedes/li>
+        <li class="divider dropdown-divider"></li>
+        <li role="menuitem">Maserati</li>
+        <li role="menuitem">Porsche</li>
+      </ul>
+    </div>
+
+    <div class="form-group">
+      <label for="username">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        id="username"
+        [(ngModel)]="user.username"
+        name="username"
+        required>
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        [(ngModel)]="user.email"
+        name="email"
+        required
+        #email="ngModel"
+      >
+      <div *ngIf="!email.valid">
+        Invalid Email
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        type="text"
+        class="form-control"
+        id="password"
+        [(ngModel)]="user.password"ç
+        name="password"
+        required>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!f.valid">Submit</button>
+</form>
