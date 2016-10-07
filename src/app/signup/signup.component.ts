@@ -20,4 +20,4 @@ export class SignupComponent {
   onSubmit(form:NgForm){
     console.log(form.value);
   }
-}
+

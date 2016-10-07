@@ -80,6 +80,7 @@ User.hasMany(Todo, { foreignKey: 'adminId' });
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
 
+
 module.exports = {
   User,
   Cohort,
