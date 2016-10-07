@@ -17,4 +17,8 @@ export class TodoListComponent {
     this.todoService.addTodo(this.newTodo);
     this.newTodo = new Todo();
   }
+
+  get todos() {
+    return this.todoService.getAllTodos();
+  }
 }

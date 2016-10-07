@@ -19,4 +19,9 @@ export class TodoService {
     this.todos.push(todo);
     return this;
   }
+
+  // Temporary placeholder for GET /api/users/:userId/todos
+  getAllTodos(): Todo[] {
+    return this.todos;
+  }
 }
