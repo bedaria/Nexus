@@ -18,6 +18,10 @@ export class TodoListComponent {
     this.newTodo = new Todo();
   }
 
+  toggleTodoComplete(todo) {
+    this.todoService.toggleTodoComplete(todo);
+  }
+
   removeTodo(todo) {
     this.todoService.deleteTodoById(todo.id);
   }
