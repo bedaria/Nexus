@@ -8,6 +8,7 @@
       <li *ngFor="let todo of todos">
         <div class="view">
           <label>{{todo.title}}</label>
+          <button (click)="removeTodo(todo)"></button>
         </div>
       </li>
     </ul>

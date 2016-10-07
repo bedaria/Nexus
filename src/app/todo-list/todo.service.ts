@@ -20,6 +20,13 @@ export class TodoService {
     return this;
   }
 
+  // Temporary placeholder for DELETE /api/users/:userId/todos/:id
+  deleteTodoById(id: number): TodoService {
+    this.todos = this.todos
+      .filter(todo => todo.id !== id);
+    return this;
+  }
+
   // Temporary placeholder for GET /api/users/:userId/todos
   getAllTodos(): Todo[] {
     return this.todos;

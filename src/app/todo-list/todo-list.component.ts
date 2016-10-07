@@ -18,6 +18,10 @@ export class TodoListComponent {
     this.newTodo = new Todo();
   }
 
+  removeTodo(todo) {
+    this.todoService.deleteTodoById(todo.id);
+  }
+
   get todos() {
     return this.todoService.getAllTodos();
   }
