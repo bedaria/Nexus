@@ -1,7 +1,7 @@
 <section class="todo-list-container">
   <header class="header">
-    <h1>My Todo List</h1>
-    <input class="new-todo" placeholder="What do you need to get done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()" />
+    <h3>My Todo List</h3>
+    <input class="new-todo form-control" placeholder="What do you need to get done?" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()" />
   </header>
   <section class="main" *ngIf="todos.length > 0">
     <ul class="todo-list">
