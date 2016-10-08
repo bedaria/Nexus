@@ -55,6 +55,5 @@ module.exports = {
   //Logout
   //Change Password
   //email verification;
-
 }
 
