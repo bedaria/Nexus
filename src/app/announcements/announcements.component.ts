@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-announcements',
@@ -7,9 +8,18 @@ import { Component } from '@angular/core';
 
 export class AnnouncementsComponent {
   announcement = '';
-  mamsg = '';
+  incoming = '';
+  socket = io('http://localhost:3000');
+
+
 
   submitAnnouncement = (msg) => {
-    this.mamsg = msg;
+    this.socket.emit('announce', msg)
+    this.socket.on('a', (msg) => {
+      console.log("msg: ", msg)
+      this.incoming = msg
+    })
+
+    return false
   }
 }
