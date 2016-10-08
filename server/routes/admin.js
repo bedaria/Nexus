@@ -13,4 +13,11 @@ router.post('/admin/users/:userId/todos', (req, res) => {
   Admin.addTodo(req, res, todo);
 });
 
+// updateTodoById
+router.put('/admin/users/:userId/todos/:todoId', (req, res) => {
+  const todo = req.body;
+  const todoId = req.params.todoId;
+  Admin.updateTodoById(req, res, todo, todoId);
+});
+
 module.exports = router;

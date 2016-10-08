@@ -11,3 +11,14 @@ exports.addTodo = (req, res, todo) => {
       res.status(500).send(err.message);
     });
 };
+
+exports.updateTodoById = (req, res, todo, todoId) => {
+  console.log('Inside updateTodoById:', todo);
+  db.Todo.update(todo, { where: { id: todoId } })
+    .then(() => {
+      res.status(200).send('Successfully updated todo item:', todoId);
+    })
+    .catch((err) => {
+      res.status(500).send('Failed to update todo item:', todoId);
+    });
+};
