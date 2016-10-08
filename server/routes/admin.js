@@ -26,4 +26,10 @@ router.delete('/admin/users/:userId/todos/:todoId', (req, res) => {
   Admin.deleteTodoById(req, res, todoId);
 });
 
+// getAllTodos
+router.get('/admin/users/:userId/todos', (req, res) => {
+  const userId = req.params.userId;
+  Admin.fetchAllTodos(req, res, userId);
+});
+
 module.exports = router;

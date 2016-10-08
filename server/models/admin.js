@@ -34,3 +34,14 @@ exports.deleteTodoById = (req, res, todoId) => {
       res.status(500).send('Failed to delete todo item:', todo.id);
     });
 };
+
+exports.fetchAllTodos = (req, res, userId) => {
+  console.log('Inside fetchAllTodos');
+  db.Todo.findAll({ where: { adminId: userId } })
+    .then((todos) => {
+      res.status(200).send(todos);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+};
