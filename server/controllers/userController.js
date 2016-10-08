@@ -2,6 +2,8 @@ const model = require('../config/db.js');
 const password = require('../config/passwordTools.js');
 var uniqueIdentifier;
 
+let uniqueIdentifier;
+
 module.exports = {
   signup: (req, res) => {
     const newUser = models.User.build({
@@ -23,6 +25,18 @@ module.exports = {
         console.log("ERROR", err)
         res.status(500).send("Something inside of userController: ", err);
       })
+        //will hash password here
+        password.hash(req.body.password)
+        .then(hashedPassword => {
+          newUser.update({ password: hashedPassword });
+          //create webtoken
+        })
+      .catch(err => console.log("Error while hashing password, ", err))
+      })
+      .catch(error => {
+        console.log("Error while creating new User ", error);
+        res.status(500).send(err);
+      });
   },
 
   signin: (req, res) => {
