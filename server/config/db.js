@@ -1,14 +1,11 @@
 const Sequelize = require('sequelize');
-require('dotenv').config();
-
-const db = new Sequelize(
-  'postgres://'+[process.env.db_user]+':'+[process.env.db_pass]+'@aws-us-east-1-portal.23.dblayer.com:15898/compose'
-);
+const config    = require('./config');
+const db = new Sequelize(config.uri);
 
 db
-  .sync()
-  .then(success => console.log('Successfully connected to Sequelize database'))
-  .catch(err => console.log('Error connecting to Sequelize database:', err));
+  .authenticate()
+  .then(success => console.log('Sequelize connection has been established successfully.'))
+  .catch(err => console.log('Unable to connect to Sequelize database:', err));
 
 /* ------------------- USER ------------------- */
 const User = db.define('user', {
@@ -80,6 +77,7 @@ const Todo = db.define('todo', {
   }
 });
 
+/* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo);
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);

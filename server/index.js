@@ -3,7 +3,7 @@ const path       = require('path');
 const logger     = require('morgan')
 const bodyParser = require('body-parser');
 const cors       = require('cors');
-const db         = require('./config/db.js');
+const db         = require('./config/db');
 const app        = express();
 
 // Routes
