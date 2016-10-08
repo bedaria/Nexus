@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
 import * as io from 'socket.io-client';
+export class Notification {
+  message: string = '';
+  cohort: string = '';
+}
 
 @Component({
   selector: 'app-notifications',
@@ -8,16 +12,17 @@ import * as io from 'socket.io-client';
 })
 
 export class NotificationComponent {
-  notification = '';
-  cohort = '';
+
+  notification: Notification = new Notification();
   showNotification = false;
   socket = io('http://localhost:3000');
 
   receiveNotification = () => {
     this.socket.on('notification', (notification) => {
-      this.notification = notification.message
+      console.log("received: ", notification);
+      this.notification.message = notification.message
       this.showNotification = true;
-      this.cohort = notification.cohort;
+      this.notification.cohort = notification.cohort;
     })
     setTimeout(()=> this.showNotification = false, 10000);
   }
