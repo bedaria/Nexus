@@ -7,7 +7,7 @@ import { routing } from './app.routing';
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
-import { NotificationComponent } from './notifications/notifications.component';
+import { NotificationComponent } from './announcements/notifications.component';
 import { LoginComponent } from './login/login.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SignupComponent } from './signup/signup.component';
