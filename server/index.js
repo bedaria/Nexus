@@ -3,7 +3,11 @@ const path       = require('path');
 const logger     = require('morgan');
 const bodyParser = require('body-parser');
 const cors       = require('cors');
+<<<<<<< df05223a11477976516678aadc49f06b462c4cbb
 const db         = require('./config/db');
+=======
+const db         = require('./config/db.js');
+>>>>>>> [feature] - adds new routing format
 
 const app        = express();
 

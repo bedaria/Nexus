@@ -3,6 +3,7 @@ const controller        = require('../controllers/admin');
 const path              = require('path');
 
 
+
 router.post('/admin/users', (req, res) => {
   res.status(200).send('POST /api/admin/users');
 });
@@ -18,6 +19,19 @@ router.post('/admin/user/signin', controller.auth.signin );
 router.post('/admin/user/signin', userController.auth.signin );
 
 
+
+/* 404 Redirection */
+router.get('*', (req, res) => res.sendStatus(404) );
+
+
+/* ------------------- USER SIGNUP + LOGIN ------------------- */
+
+/* User Endpoints */
+router.post('/admin/user/signup', (req, res) => {
+  userController.signup
+});
+
+router.post('/admin/user/signin', userController.signin );
 
 /* 404 Redirection */
 router.get('*', (req, res) => res.sendStatus(404) );

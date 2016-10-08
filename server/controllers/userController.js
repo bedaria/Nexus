@@ -1,7 +1,15 @@
+<<<<<<< df05223a11477976516678aadc49f06b462c4cbb
 const model = require('../config/db.js');
 const password = require('../config/passwordTools.js');
 var uniqueIdentifier;
 
+=======
+/**
+ * Created by MikeTran on 10/8/16.
+ */
+const model = require('.../models/userModel.js');
+const password = require('./config/passwordTools.js');
+>>>>>>> [feature] - adds new routing format
 let uniqueIdentifier;
 
 module.exports = {
@@ -31,13 +39,11 @@ module.exports = {
           newUser.update({ password: hashedPassword });
           //create webtoken
         })
-      .catch(err => console.log("Error while hashing password, ", err))
-      })
-      .catch(error => {
-        console.log("Error while creating new User ", error);
-        res.status(500).send(err);
+      .catch(err => {console.log("Error while hashing password, ", err)
       });
-  },
+
+
+
 
   signin: (req, res) => {
     if((!req.body.username && !req.body.email) || !req.body.password){
@@ -69,5 +75,6 @@ module.exports = {
   //Logout
   //Change Password
   //email verification;
+
 }
 
