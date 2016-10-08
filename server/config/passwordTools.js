@@ -22,8 +22,6 @@ checkPassword = (attemptedPass, hash) => {
   });
 };
 
-
-
 module.exports = {
   hash,
   checkPassword

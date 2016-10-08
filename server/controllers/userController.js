@@ -2,7 +2,7 @@
  * Created by MikeTran on 10/8/16.
  */
 const model = require('.../models/userModel.js');
-
+const password = require('./config/passwordTools.js');
 let uniqueIdentifier;
 
 module.exports = {
@@ -20,18 +20,9 @@ module.exports = {
 
     newUser.save() //saves to database
       .then(inputs => {
-        //will hash password here
-        password.hash(req.body.password)
-        .then(hashedPassword => {
-          newUser.update({ password: hashedPassword });
-          //create webtoken
-        })
-      .catch(err => console.log("Error while hashing password, ", err))
+        res.status(200).send("USER INPUT SAVED");
       })
-      .catch(error => {
-        console.log("Error while creating new User ", error);
-        res.status(500).send(err);
-      });
+
   },
 
   signin: (req, res) => {
@@ -48,9 +39,10 @@ module.exports = {
       .then( foundUser => {
         if(!foundUser) res.status(500).send('User not found.');
         else {
-          //compare userPassword
+          password.checkPassword(req.body.password, user.password)
             .then( successfulMatch => {
-
+              console.log("Successful login");
+              //INSERT JSON WEBTOKEN
           })
             .catch( err => {
               console.log('Error:', err);
@@ -59,6 +51,10 @@ module.exports = {
         }
       })
   },
+
+  //Logout
+  //Change Password
+  //email verification;
 
 }
 
