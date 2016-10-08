@@ -1,0 +1,11 @@
+form {
+  float: right;
+}
+
+div {
+  display: inline-block;
+}
+
+select, input {
+  height: 2em;
+}

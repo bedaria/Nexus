@@ -3,23 +3,21 @@ import * as io from 'socket.io-client';
 
 @Component({
   selector: 'app-announcements',
-  templateUrl: './announcements.html'
+  templateUrl: './announcements.component.html',
+  styleUrls: ['./announcements.component.css']
 })
 
 export class AnnouncementsComponent {
   announcement = '';
-  incoming = '';
+  cohorts = ['seniors', 'juniors'];
+  cohort = '';
   socket = io('http://localhost:3000');
 
-
-
-  submitAnnouncement = (msg) => {
-    this.socket.emit('announce', msg)
-    this.socket.on('a', (msg) => {
-      console.log("msg: ", msg)
-      this.incoming = msg
-    })
-
-    return false
+  submitAnnouncement = () => {
+    this.socket.emit('announce',
+      { message: this.announcement,
+        isNewNotification: true,
+        cohort: this.cohort
+      })
   }
 }
