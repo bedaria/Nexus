@@ -22,3 +22,15 @@ exports.updateTodoById = (req, res, todo, todoId) => {
       res.status(500).send('Failed to update todo item:', todoId);
     });
 };
+
+exports.deleteTodoById = (req, res, todoId) => {
+  console.log('Inside deleteTodoById');
+  db.Todo.findById(todoId)
+    .then((todo) => {
+      todo.destroy();
+      res.status(200).send('Successfully deleted todo item:', todo.id);
+    })
+    .catch((err) => {
+      res.status(500).send('Failed to delete todo item:', todo.id);
+    });
+};

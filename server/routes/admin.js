@@ -20,4 +20,10 @@ router.put('/admin/users/:userId/todos/:todoId', (req, res) => {
   Admin.updateTodoById(req, res, todo, todoId);
 });
 
+// deleteTodoById
+router.delete('/admin/users/:userId/todos/:todoId', (req, res) => {
+  const todoId = req.params.todoId;
+  Admin.deleteTodoById(req, res, todoId);
+});
+
 module.exports = router;
