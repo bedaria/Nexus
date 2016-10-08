@@ -2,6 +2,7 @@ const model = require('../config/db.js');
 const password = require('../config/passwordTools.js');
 var uniqueIdentifier;
 
+
 module.exports = {
   signup: (req, res) => {
     const newUser = models.User.build({
@@ -32,6 +33,8 @@ module.exports = {
       .catch(err => {console.log("Error while hashing password, ", err)
       });
 
+
+      })
 
 
   },
