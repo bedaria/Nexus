@@ -6,6 +6,7 @@
   "angular-cli": {},
   "scripts": {
     "start": "ng serve --proxy-config proxy.conf.json",
+    "start:server": "nodemon bin/entry.js",
     "lint": "npm run lint:client; npm run lint:server",
     "lint:client": "tslint \"src/**/*.ts\"",
     "lint:server": "eslint \"server/**/*.js\"",
@@ -25,6 +26,7 @@
     "@angular/platform-browser-dynamic": "2.0.0",
     "@angular/router": "3.0.0",
     "body-parser": "^1.15.2",
+    "axios": "^0.14.0",
     "core-js": "^2.4.1",
     "cors": "^2.8.1",
     "dotenv": "^2.0.0",

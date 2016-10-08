@@ -18,6 +18,12 @@ export class LoginComponent {
   }
 
   onSubmit(form:NgForm){
-    console.log(form.value);
+    axios.post('/api/signup', {
+      username: form.value.username,
+      email: form.value.email,
+      password: form.value.password,
+    }).then(resp => {
+      if(resp.data.error) console.log("Error in post");
+    })
   }
 }
