@@ -5,7 +5,7 @@
   "main": "index.js",
   "angular-cli": {},
   "scripts": {
-    "start": "ng serve & nodemon bin/entry.js",
+    "start": "ng serve --proxy-config proxy.conf.json",
     "lint": "npm run lint:client; npm run lint:server",
     "lint:client": "tslint \"src/**/*.ts\"",
     "lint:server": "eslint \"server/**/*.js\"",
