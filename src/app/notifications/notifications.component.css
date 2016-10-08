@@ -1,6 +1,7 @@
 .notificationContainer {
-  float: right;
   border: solid;
+  margin-top: 2em;
+  background-color: grey;
   border-color: grey;
   border-radius: 15px 50px 30px;
   text-align: center;

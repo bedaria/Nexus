@@ -9,8 +9,8 @@ import * as io from 'socket.io-client';
 
 export class NotificationComponent {
   notification = '';
-  showNotification = false;
   cohort = '';
+  showNotification = false;
   socket = io('http://localhost:3000');
 
   receiveNotification = () => {
