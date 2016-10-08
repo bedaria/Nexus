@@ -1,7 +1,14 @@
-<h1>
-  {{title}}
-</h1>
-<app-announcements></app-announcements>
-<app-user-profile></app-user-profile>s
-<login></login>
-<todo-list></todo-list>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-10">
+      <h1>{{title}}</h1>
+      <hr>
+      <a [routerLink]="['']"> ~ Home ~</a>
+      <a [routerLink]="['/signup']">Sign Up ~ </a>
+      <a [routerLink]="['/login']">Login ~</a>
+      <app-announcements></app-announcements>
+      <hr>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { LoginComponent } from './login/login.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
+import { SignupComponent } from './signup/signup.component';
 
 
 @NgModule({
@@ -16,14 +18,16 @@ import { TodoListComponent } from './todo-list/todo-list.component';
     UserProfileComponent,
     AnnouncementsComponent,
     LoginComponent,
-    TodoListComponent
+    TodoListComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
