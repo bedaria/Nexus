@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
 import axios from 'axios';
+<<<<<<< 4ac7e6342710614e3cc3a241cbb07e2145e98416
+=======
+
+>>>>>>> [feature] - adds controller for user
 
 @Component({
   selector: 'login',
