@@ -1,18 +1,15 @@
 const Sequelize = require('sequelize');
-require('dotenv').config();
-
-const db = new Sequelize(
-  'postgres://'+[process.env.db_user]+':'+[process.env.db_pass]+'@aws-us-east-1-portal.23.dblayer.com:15898/compose'
-);
+const config    = require('./config');
+const db = new Sequelize(config.uri);
 
 db
-  .sync()
-  .then(success => console.log('Successfully connected to Sequelize database'))
-  .catch(err => console.log('Error connecting to Sequelize database:', err));
+  .authenticate()
+  .then(success => console.log('Sequelize connection has been established successfully.'))
+  .catch(err => console.log('Unable to connect to Sequelize database:', err));
 
 /* ------------------- USER ------------------- */
-const User = db.define('user', {
-  email:{
+const User = db.define('User', {
+  email: {
     type: Sequelize.STRING,
     unique: true,
     allowNull: false,
@@ -53,40 +50,39 @@ const User = db.define('user', {
 });
 
 /* ------------------- COHORT ------------------- */
-const Cohort = db.define('cohort', {
-  cohort: {
-    type: Sequelize.INTEGER
-  }
+const Cohort = db.define('Cohort', {
+  cohort: Sequelize.INTEGER
 });
 
 /* ------------------- ANNOUNCEMENT ------------------- */
-const Announcement = db.define('announcement', {
-  announcement: {
-    type: Sequelize.STRING,
-  },
-  cohortId: {
-    type: Sequelize.INTEGER,
-  },
+const Announcement = db.define('Announcement', {
+  announcement: Sequelize.STRING,
+  cohortId: Sequelize.INTEGER
 });
 
 /* ------------------- TO DO LIST ------------------- */
-const Todo = db.define('todo', {
-  todo: {
-    type: Sequelize.STRING,
-    allowNull: false
+const Todo = db.define('Todo',
+  {
+    todo: {
+      type: Sequelize.STRING,
+      allowNull: false
+    },
+    userId: Sequelize.INTEGER
   },
-  userId: {
-    type: Sequelize.INTEGER,
+  {
+    tableName: 'Todos',
+    timestamps: true
   }
-});
+);
 
-User.hasMany(Todo);
+/* ------------------- ASSOCIATIONS ------------------- */
+User.hasMany(Todo, { foreignKey: 'adminId' });
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
 
 module.exports = {
   User,
-  Todo,
+  Cohort,
   Announcement,
-  Cohort
+  Todo
 };
