@@ -73,7 +73,7 @@ const Todo = db.define('Todo',
     tableName: 'Todos',
     timestamps: true
   }
-});
+);
 
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo, { foreignKey: 'adminId' });
