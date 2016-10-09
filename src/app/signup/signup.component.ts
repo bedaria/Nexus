@@ -20,11 +20,11 @@ export class SignupComponent {
     email: 'chris@test.com',
     password: 'test',
     profilePic: '',
-    bio: ''
-  }
+    bio: 'Born in the mountains, but grew up in the concrete jungle'
+  };
 
   onSubmit(form:NgForm){
-    axios.post('/api/signup', {
+    var data = {
       username: form.value.username,
       email: form.value.email,
       password: form.value.password,
@@ -33,8 +33,11 @@ export class SignupComponent {
       cohort: form.value.cohort,
       profilePic: form.value.profilePic,
       bio: form.value.bio
-    }).then(resp => {
+    };
+
+    axios.post('/api/admin/signup', data ).then(resp => {
       if(resp.data.error) console.log("Error in post");
+      else { console.log(resp)}
     })
   }
 

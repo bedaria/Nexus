@@ -1,9 +1,6 @@
-/**
- * Created by MikeTran on 10/8/16.
- */
-const model = require('.../models/userModel.js');
-const password = require('./config/passwordTools.js');
-let uniqueIdentifier;
+const model = require('../config/db.js');
+const password = require('../config/passwordTools.js');
+var uniqueIdentifier;
 
 module.exports = {
   signup: (req, res) => {
@@ -22,7 +19,10 @@ module.exports = {
       .then(inputs => {
         res.status(200).send("USER INPUT SAVED");
       })
-
+      .catch(err => {
+        console.log("ERROR", err)
+        res.status(500).send("Something inside of userController: ", err);
+      })
   },
 
   signin: (req, res) => {

@@ -16,10 +16,10 @@ export class LoginComponent {
     username: 'Max',
     email: 'chris@test.com',
     password: 'test',
-  }
+  };
 
   onSubmit(form:NgForm){
-    axios.post('/api/signup', {
+    axios.post('/api/admin/signup', {
       username: form.value.username,
       email: form.value.email,
       password: form.value.password,

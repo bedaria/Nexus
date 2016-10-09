@@ -1,5 +1,5 @@
-const router = require('express').Router();
-const controller = require('../controllers/admin');
+const router            = require('express').Router();
+const controller        = require('../controllers/admin');
 const path              = require('path');
 
 
@@ -14,10 +14,10 @@ router.delete('/admin/users/:userId/todos/:todoId', controller.todos.delete);
 router.get('/admin/users/:userId/todos', controller.todos.fetchAll);
 
 /* ------------------- USER SIGNUP + LOGIN ------------------- */
-
-/* User Endpoints */
-router.post('/admin/user/signin', controller.auth.signup );
 router.post('/admin/user/signin', controller.auth.signin );
+router.post('/admin/user/signin', userController.auth.signin );
+
+
 
 /* 404 Redirection */
 router.get('*', (req, res) => res.sendStatus(404) );
