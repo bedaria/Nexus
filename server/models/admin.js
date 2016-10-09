@@ -1,7 +1,14 @@
 const db = require('../config/db');
 
 /* ------------------- TO DO LIST ------------------- */
-exports.addTodo = (req, res, todo) => {
+exports.todos = {
+  add: addTodo,
+  update: updateTodoById,
+  delete: deleteTodoById,
+  fetchAll: fetchAllTodos
+}
+
+function addTodo(req, res, todo) {
   console.log('Inside addTodo:', todo);
   db.Todo.create(todo)
     .then((todo) => {
@@ -12,7 +19,7 @@ exports.addTodo = (req, res, todo) => {
     });
 };
 
-exports.updateTodoById = (req, res, todo, todoId) => {
+function updateTodoById(req, res, todo, todoId) {
   console.log('Inside updateTodoById:', todo);
   db.Todo.update(todo, { where: { id: todoId } })
     .then(() => {
@@ -23,7 +30,7 @@ exports.updateTodoById = (req, res, todo, todoId) => {
     });
 };
 
-exports.deleteTodoById = (req, res, todoId) => {
+function deleteTodoById(req, res, todoId) {
   console.log('Inside deleteTodoById');
   db.Todo.findById(todoId)
     .then((todo) => {
@@ -35,7 +42,7 @@ exports.deleteTodoById = (req, res, todoId) => {
     });
 };
 
-exports.fetchAllTodos = (req, res, userId) => {
+function fetchAllTodos(req, res, userId) {
   console.log('Inside fetchAllTodos');
   db.Todo.findAll({ where: { adminId: userId } })
     .then((todos) => {
