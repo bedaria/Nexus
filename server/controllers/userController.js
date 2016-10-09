@@ -1,16 +1,6 @@
-<<<<<<< df05223a11477976516678aadc49f06b462c4cbb
 const model = require('../config/db.js');
 const password = require('../config/passwordTools.js');
 var uniqueIdentifier;
-
-=======
-/**
- * Created by MikeTran on 10/8/16.
- */
-const model = require('.../models/userModel.js');
-const password = require('./config/passwordTools.js');
->>>>>>> [feature] - adds new routing format
-let uniqueIdentifier;
 
 module.exports = {
   signup: (req, res) => {
@@ -44,6 +34,7 @@ module.exports = {
 
 
 
+  },
 
   signin: (req, res) => {
     if((!req.body.username && !req.body.email) || !req.body.password){

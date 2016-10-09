@@ -38,8 +38,6 @@ export class SignupComponent {
     axios.post('/api/admin/signup', data ).then(resp => {
       if(resp.data.error) console.log("Error in post");
       else { console.log(resp)}
-    }).then(resp => {
-      if(resp.data.error) console.log("Error in post");
     })
   }
 
