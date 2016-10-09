@@ -2,8 +2,6 @@ const router            = require('express').Router();
 const controller        = require('../controllers/admin');
 const path              = require('path');
 
-
-
 router.post('/admin/users', (req, res) => {
   res.status(200).send('POST /api/admin/users');
 });
@@ -27,9 +25,8 @@ router.get('*', (req, res) => res.sendStatus(404) );
 /* ------------------- USER SIGNUP + LOGIN ------------------- */
 
 /* User Endpoints */
-router.post('/admin/user/signup', userController.signup);
-
-router.post('/admin/user/signin', userController.signin );
+router.post('/admin/user/signup', userController.auth.signup);
+router.post('/admin/user/signin', userController.auth.signin );
 
 
 
