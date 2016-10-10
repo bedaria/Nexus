@@ -12,7 +12,7 @@ export class MessageService {
 
   saveAnnouncement(announcement: Object): Observable<string> {
     return this.http
-      .post('/api/admin/announcements', announcement)
+      .post('/api/admin/announcements/addAnnouncement', announcement)
       .map((r: Response) => r.json().message)
   }
 
