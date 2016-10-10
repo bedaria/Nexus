@@ -44,11 +44,9 @@ const User = db.define('User', {
   },
   cohortId: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   profilePic: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   bio: {
     type: Sequelize.TEXT,

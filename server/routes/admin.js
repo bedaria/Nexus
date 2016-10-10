@@ -15,9 +15,8 @@ router.get('/admin/users/:userId/todos', controller.todos.fetchAll);
 
 /* ------------------- USER SIGNUP + LOGIN ------------------- */
 
-/* User Endpoints */
-router.post('/admin/user/signup', controller.auth.signup);
-router.post('/admin/user/signin', controller.auth.signin );
+router.post('/admin/user/signup', controller.auth.signUp);
+router.post('/admin/user/signin', controller.auth.signIn);
 
 /* 404 Redirection */
 router.get('*', (req, res) => res.sendStatus(404) );

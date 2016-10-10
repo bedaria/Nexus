@@ -34,15 +34,15 @@ const signIn = (req, res) => {
   // }
   // uniqueIdentifier = (req.body.username) ? 'username' : 'email';
 
-  loginUsername = req.params.username;
-  loginEmail = req.params.email;
-  loginPassword = req.params.password;
+  loginUsername = loginAttempt.username;
+  loginEmail = loginAttempt.email;
+  loginPassword = loginAttempt.password;
 
   model.auth.signin(req, res, loginUsername, loginEmail, loginPassword);
 };
 
 const signUp = (req, res) => {
-    const newUser = models.User.build({
+    const newUser = {
       username: req.body.username,
       email: req.body.email,
       password: req.body.password,
@@ -51,7 +51,7 @@ const signUp = (req, res) => {
       cohort: req.body.cohort,
       profilePic: req.body.profilePic,
       bio: req.body.bio,
-    });
+    };
   model.auth.signUp(req, res, newUser);
 };
 
@@ -60,6 +60,9 @@ exports.todos = {
   update: updateTodoById,
   delete: deleteTodoById,
   fetchAll: fetchAllTodos,
+}
+
+exports.auth = {
   signIn: signIn,
-  signUp: signUp
+  signUp: signUp,
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import axios from 'axios';
+import { UserService } from "./../user.service";
 
 @Component({
   selector: 'app-signup',
@@ -12,6 +12,8 @@ import axios from 'axios';
   `]
 })
 export class SignupComponent {
+  constructor(private userService: UserService) {}
+
   user = {
     firstName: "Max",
     lastName: "Payne",
@@ -20,7 +22,7 @@ export class SignupComponent {
     email: 'chris@test.com',
     password: 'test',
     profilePic: '',
-    bio: 'Born in the mountains, but grew up in the concrete jungle'
+    bio: 'Born in the mountains; Raised in the concrete jungle'
   };
 
   onSubmit(form:NgForm){
@@ -35,10 +37,13 @@ export class SignupComponent {
       bio: form.value.bio
     };
 
-    axios.post('/api/admin/signup', data ).then(resp => {
-      if(resp.data.error) console.log("Error in post");
-      else { console.log(resp)}
-    })
+    this.userService.storeUserData(data).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+    );
+
+    //.then()
+    //redirect to "/" page
   }
 
 }

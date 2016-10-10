@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
-import axios from 'axios';
+import { UserService } from "./../user.service";
 
 @Component({
   selector: 'login',
@@ -18,13 +18,19 @@ export class LoginComponent {
     password: 'test',
   };
 
-  onSubmit(form:NgForm) {
-    axios.post('/api/admin/signup', {
-      username: form.value.username,
-      email: form.value.email,
-      password: form.value.password,
-    }).then(resp => {
-      if(resp.data.error) console.log("Error in post");
-    })
+  constructor(private userService: UserService) {}
+
+  onSubmit(form:NgForm){
+    var data = {
+        username: form.value.username,
+        email: form.value.email,
+        password: form.value.password,
+      }
+
+    this.userService.storeUserData(data).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+    );
+
   }
 }
