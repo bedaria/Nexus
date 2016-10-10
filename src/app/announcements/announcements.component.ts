@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MessageService } from './message.service';
-import { Message } from './message';
+import { Message, cohorts } from './message';
 
 @Component({
   selector: 'app-announcements',
@@ -13,7 +13,6 @@ export class AnnouncementsComponent {
   announcementInfo: Message = new Message;
   announcement = '';
   cohort = '';
-  cohorts = ['seniors', 'juniors'];
 
   constructor(private messageService: MessageService) {};
 
