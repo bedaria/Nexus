@@ -46,9 +46,47 @@ const fetchAllTodos = (req, res, userId) => {
     });
 };
 
+const addAnnouncement = (req, res) => {
+  const cohortId = (cohort) => {
+    if(cohort.toLowerCase() === 'juniors')
+      return 49
+    else
+      return 53
+  }
+
+  db.Cohort.findOne({
+    where: {
+      cohort: cohortId(req.body.cohort)
+    }
+  })
+  .then((cohort) => {
+    db.Announcement.create({announcement: req.body.message, CohortId: cohort.id})
+      .then((announcement) =>
+        res.status(200).json({message: "got a new Message",
+                              messageId: announcement.id})
+      )
+      .catch((err) => res.status(500).send("error: ", err))
+    })
+  .catch((err) => res.status(500).send("error: ", err))
+    // cohort.addAnnouncement({"announcement": req.body.message})
+    // .then(() => {
+    //   console.log("announcement created")
+    //   res.status(304).send()
+    // })
+    // .catch((err) => {
+    //   console.log("did not add announcement: ", err)
+    //   res.status(500).send("error")
+    // })
+
+};
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
   delete: deleteTodoById,
   fetchAll: fetchAllTodos
+}
+
+exports.announcements = {
+  addAnnouncement: addAnnouncement
 }

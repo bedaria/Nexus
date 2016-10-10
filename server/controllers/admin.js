@@ -23,9 +23,17 @@ const fetchAllTodos = (req, res) => {
   model.todos.fetchAll(req, res, userId);
 }
 
+const addAnnouncement = (req, res) => {
+  model.announcements.addAnnouncement(req, res);
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
   delete: deleteTodoById,
   fetchAll: fetchAllTodos
+}
+
+exports.announcements = {
+  addAnnouncement: addAnnouncement
 }
