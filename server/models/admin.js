@@ -1,4 +1,6 @@
 const db = require('../config/db');
+const password = require('../config/passwordTools.js');
+const jsonWebToken = require('jsonwebtoken');
 
 /* ------------------- TO DO LIST ------------------- */
 const addTodo = (req, res, todo) => {
@@ -46,9 +48,61 @@ const fetchAllTodos = (req, res, userId) => {
     });
 };
 
+
+/*------------------- SIGN IN/ SIGN UP ------------------- */
+
+const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
+  db.User.findOne({
+    where:{
+      username : loginUsername,
+      email    : loginEmail
+    },
+    attributes: ['id', 'firstName', 'lastName', 'email', 'username', 'password', 'profilePic', 'bio']
+  })
+    .then( foundUser => {
+      if (!foundUser) res.status(401).send('User not found.');
+      else {
+        // password.checkPassword(loginPassword, foundUser.password)
+        //   .then(successfulMatch => {
+            const token = jsonWebToken.sign(foundUser.dataValues, 'userDashboard');
+            res.status(200).json({
+              id: foundUser.id,
+              firstName: foundUser.firstName,
+              email: foundUser.email,
+              username: foundUser.username,
+              token: token,
+            // });
+          })
+          // .catch(error => {
+          //   console.log("Password hashing error: ", error);
+          //   res.status(500).send(error);
+          // })
+      }
+    })
+    .catch( err => {
+      console.log('Line 84 Error:', err);
+      res.status(500).send("Password do not match", err);
+    });
+};
+
+const signUp = (req, res, newUser) => {
+  db.User.create(newUser)
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      res.status(400).send(err);
+    });
+};
+exports.auth = {
+  signUp: signUp,
+  signIn: signIn,
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
   delete: deleteTodoById,
-  fetchAll: fetchAllTodos
+  fetchAll: fetchAllTodos,
 }
+

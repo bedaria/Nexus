@@ -1,9 +1,10 @@
 const express    = require('express');
 const path       = require('path');
-const logger     = require('morgan')
+const logger     = require('morgan');
 const bodyParser = require('body-parser');
 const cors       = require('cors');
 const db         = require('./config/db');
+
 const app        = express();
 
 // Routes
@@ -24,6 +25,8 @@ app.get('/*', (req, res) => {
 });
 
 app.set('port', process.env.PORT || 3000);
+
 app.listen(app.get('port'), () => {
   console.log('Express server listening on port: ', app.get('port'));
 });
+

@@ -7,6 +7,7 @@ db
   .then(success => console.log('Sequelize connection has been established successfully.'))
   .catch(err => console.log('Unable to connect to Sequelize database:', err));
 
+
 /* ------------------- USER ------------------- */
 const User = db.define('User', {
   email: {
@@ -37,11 +38,9 @@ const User = db.define('User', {
   },
   cohortId: {
     type: Sequelize.INTEGER,
-    allowNull: false
   },
   profilePic: {
     type: Sequelize.STRING,
-    allowNull: false
   },
   bio: {
     type: Sequelize.TEXT,
@@ -79,6 +78,7 @@ const Todo = db.define('Todo',
 User.hasMany(Todo, { foreignKey: 'adminId' });
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
+
 
 module.exports = {
   User,

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from "@angular/forms";
+import { UserService } from "./../user.service";
 
 @Component({
   selector: 'login',
@@ -15,9 +16,20 @@ export class LoginComponent {
     username: 'Max',
     email: 'chris@test.com',
     password: 'test',
-  }
+  };
+
+  constructor(private userService: UserService) {}
 
   onSubmit(form:NgForm){
-    console.log(form.value);
+    var data = {
+        username: form.value.userData.username,
+        email: form.value.userData.email,
+        password: form.value.userData.password,
+      };
+    this.userService.fetchUserData(data).subscribe(
+      data => console.log(data),
+      error => console.log(error)
+    );
+
   }
 }
