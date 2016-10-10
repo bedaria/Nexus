@@ -56,8 +56,7 @@ const Cohort = db.define('Cohort', {
 
 /* ------------------- ANNOUNCEMENT ------------------- */
 const Announcement = db.define('Announcement', {
-  announcement: Sequelize.STRING,
-  cohortId: Sequelize.INTEGER
+  announcement: Sequelize.STRING
 });
 
 /* ------------------- TO DO LIST ------------------- */
@@ -78,7 +77,9 @@ const Todo = db.define('Todo',
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo, { foreignKey: 'adminId' });
 Cohort.hasMany(User);
-Cohort.hasMany(Announcement);
+Cohort.hasMany(Announcement, {as: 'Announcements'});
+//announcement should have a cohortId
+//cohort gets accessors getAnnouncement, setAnnouncement
 
 module.exports = {
   User,
