@@ -74,7 +74,10 @@ const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
               token: token,
             });
           })
-          .catch(error => console.log("Password hashing error: ", error))
+          .catch(error => {
+            console.log("Password hashing error: ", error);
+            res.status(500).send(error);
+          })
       }
     })
     .catch( err => {
@@ -83,14 +86,13 @@ const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
     });
 };
 
-const signUp = (req, resp, newUser) => {
-  db.User.create(newUser) //saves to database
-    .then(inputs => {
-      res.status(200).send("USER INPUT SAVED", inputs);
+const signUp = (req, res, newUser) => {
+  db.User.create(newUser)
+    .then((data) => {
+      res.status(200).json(data);
     })
-    .catch(err => {
-      console.log("ERROR", err)
-      res.status(500).send("Something inside of userController: ", err);
+    .catch((err) => {
+      res.status(400).send(err);
     });
 };
 exports.auth = {

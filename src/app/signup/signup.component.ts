@@ -21,20 +21,20 @@ export class SignupComponent {
     username: 'Max',
     email: 'chris@test.com',
     password: 'test',
-    profilePic: '',
+    profilePic: 'adhadgas.jpg',
     bio: 'Born in the mountains; Raised in the concrete jungle'
   };
 
   onSubmit(form:NgForm){
     var data = {
-      username: form.value.username,
-      email: form.value.email,
-      password: form.value.password,
-      firstName:form.value.firstName,
-      lastName:form.value.lastName,
-      cohort: form.value.cohort,
-      profilePic: form.value.profilePic,
-      bio: form.value.bio
+      username: form.value.userData.username,
+      email: form.value.userData.email,
+      password: form.value.userData.password,
+      firstName:form.value.userData.firstName,
+      lastName:form.value.userData.lastName,
+      cohort: form.value.userData.cohort,
+      profilePic: form.value.userData.profilePic,
+      bio: form.value.userData.bio
     };
 
     this.userService.storeUserData(data).subscribe(

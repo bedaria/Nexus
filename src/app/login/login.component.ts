@@ -26,7 +26,7 @@ export class LoginComponent {
         email: form.value.email,
         password: form.value.password,
       }
-
+    console.log("INSIDE OF onSUBMIT:", data);
     this.userService.storeUserData(data).subscribe(
       data => console.log(data),
       error => console.log(error)
