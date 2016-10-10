@@ -38,7 +38,7 @@ const signIn = (req, res) => {
   loginEmail = loginAttempt.email;
   loginPassword = loginAttempt.password;
 
-  model.auth.signin(req, res, loginUsername, loginEmail, loginPassword);
+  model.auth.signIn(req, res, loginUsername, loginEmail, loginPassword);
 };
 
 const signUp = (req, res) => {

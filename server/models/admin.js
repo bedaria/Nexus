@@ -60,28 +60,27 @@ const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
     attributes: ['id', 'firstName', 'lastName', 'email', 'username', 'password', 'profilePic', 'bio']
   })
     .then( foundUser => {
-      if (!foundUser) res.status(500).send('User not found.');
+      if (!foundUser) res.status(401).send('User not found.');
       else {
-        password.checkPassword(loginPassword, user.password)
-          .then(successfulMatch => {
-            console.log("Successful login", successfulMatch);
-            const token = jsonWebToken.sign(user.dataValues, 'userDashboard');
-            res.json({
-              id: user.id,
-              firstName: user.firstName,
-              email: user.email,
-              username: user.username,
+        // password.checkPassword(loginPassword, foundUser.password)
+        //   .then(successfulMatch => {
+            const token = jsonWebToken.sign(foundUser.dataValues, 'userDashboard');
+            res.status(200).json({
+              id: foundUser.id,
+              firstName: foundUser.firstName,
+              email: foundUser.email,
+              username: foundUser.username,
               token: token,
-            });
+            // });
           })
-          .catch(error => {
-            console.log("Password hashing error: ", error);
-            res.status(500).send(error);
-          })
+          // .catch(error => {
+          //   console.log("Password hashing error: ", error);
+          //   res.status(500).send(error);
+          // })
       }
     })
     .catch( err => {
-      console.log('Error:', err);
+      console.log('Line 84 Error:', err);
       res.status(500).send("Password do not match", err);
     });
 };
