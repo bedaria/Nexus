@@ -1,24 +1,26 @@
 import { Component } from '@angular/core';
-import * as io from 'socket.io-client';
+import { MessageService } from './message.service';
+import { Message } from './message';
 
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.css'],
+  providers: [MessageService]
 })
 
 export class NotificationComponent {
-  notification = '';
-  cohort = '';
+  notification: Message = new Message;
   showNotification = false;
-  socket = io('http://localhost:3000');
 
-  receiveNotification = () => {
-    this.socket.on('notification', (notification) => {
-      this.notification = notification.message
+  constructor(private messageService: MessageService) {};
+
+  receiveNotification(): void {
+    let callback = (data) => {
       this.showNotification = true;
-      this.cohort = notification.cohort;
-    })
-    setTimeout(()=> this.showNotification = false, 10000);
+      this.notification = data
+      setTimeout(() => (this.showNotification = false), 1000)
+    }
+    this.messageService.receiveNotification(callback);
   }
 }

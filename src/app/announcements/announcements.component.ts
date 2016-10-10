@@ -1,23 +1,26 @@
 import { Component } from '@angular/core';
-import * as io from 'socket.io-client';
+import { MessageService } from './message.service';
+import { Message } from './message';
 
 @Component({
   selector: 'app-announcements',
   templateUrl: './announcements.component.html',
-  styleUrls: ['./announcements.component.css']
+  styleUrls: ['./announcements.component.css'],
+  providers: [MessageService]
 })
 
 export class AnnouncementsComponent {
+  announcementInfo: Message = new Message;
   announcement = '';
-  cohorts = ['seniors', 'juniors'];
   cohort = '';
-  socket = io('http://localhost:3000');
+  cohorts = ['seniors', 'juniors'];
 
-  submitAnnouncement = () => {
-    this.socket.emit('announce',
-      { message: this.announcement,
-        isNewNotification: true,
-        cohort: this.cohort
-      })
+  constructor(private messageService: MessageService) {};
+
+  submitAnnouncement(): void {
+    event.preventDefault();
+    this.announcementInfo.message = this.announcement;
+    this.announcementInfo.cohort = this.cohort;
+    this.messageService.submitAnnouncement(this.announcementInfo);
   }
 }
