@@ -15,7 +15,11 @@ export class UserService {
     return this.http.post('/api/admin/user/signup', body, {headers: headers});
   }
 
-  fetchUserData(){
-
+  fetchUserData(data){
+    const body = JSON.stringify(data);
+    const headers = new Headers ({
+      'Content-Type': 'application/json'
+    })
+    return this.http.post('/api/admin/user/signin', body, {headers: headers});
   }
 }

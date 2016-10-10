@@ -22,12 +22,11 @@ export class LoginComponent {
 
   onSubmit(form:NgForm){
     var data = {
-        username: form.value.username,
-        email: form.value.email,
-        password: form.value.password,
-      }
-    console.log("INSIDE OF onSUBMIT:", data);
-    this.userService.storeUserData(data).subscribe(
+        username: form.value.userData.username,
+        email: form.value.userData.email,
+        password: form.value.userData.password,
+      };
+    this.userService.fetchUserData(data).subscribe(
       data => console.log(data),
       error => console.log(error)
     );

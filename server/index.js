@@ -5,9 +5,6 @@ const bodyParser = require('body-parser');
 const cors       = require('cors');
 const db         = require('./config/db');
 
-
-=======
->>>>>>> [feature] - adds new routing format
 const app        = express();
 
 // Routes

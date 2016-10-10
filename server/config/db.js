@@ -3,16 +3,10 @@ const config    = require('./config');
 const db = new Sequelize(config.uri);
 
 db
-<<<<<<< d16917dc2d09b7e8370238b4e823fa36dae63360
   .authenticate()
   .then(success => console.log('Sequelize connection has been established successfully.'))
   .catch(err => console.log('Unable to connect to Sequelize database:', err));
-=======
-  .sync()
-  .then(success => console.log('Successfully connected to Sequelize database'))
-  .catch(err => console.log('Error connecting to Sequelize database:', err));
 
->>>>>>> [setup] - creates config file for Sequelize connection URI
 
 /* ------------------- USER ------------------- */
 const User = db.define('User', {
