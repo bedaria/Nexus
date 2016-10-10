@@ -67,7 +67,7 @@ const addAnnouncement = (req, res) => {
       )
       .catch((err) => res.status(500).send("error: ", err))
     })
-  .catch((err) => res.status(500).send("error: ", err))
+  .catch((err) => res.status(500).send("ERROR: ", err))
     // cohort.addAnnouncement({"announcement": req.body.message})
     // .then(() => {
     //   console.log("announcement created")
@@ -80,6 +80,15 @@ const addAnnouncement = (req, res) => {
 
 };
 
+const getAnnouncements = (req, res) => {
+  db.Announcement.findAll()
+  .then(announcements => {
+    res.status(200).json({announcements:
+      announcements.map(announcement => announcement.dataValues.announcement)})
+  })
+  .catch((err) => console.log("ERROR: ", err))
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
@@ -88,5 +97,6 @@ exports.todos = {
 }
 
 exports.announcements = {
-  addAnnouncement: addAnnouncement
+  addAnnouncement: addAnnouncement,
+  getAnnouncements: getAnnouncements
 }

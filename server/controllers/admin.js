@@ -27,6 +27,10 @@ const addAnnouncement = (req, res) => {
   model.announcements.addAnnouncement(req, res);
 }
 
+const getAnnouncements = (req, res) => {
+  model.announcements.getAnnouncements(req, res);
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
@@ -35,5 +39,6 @@ exports.todos = {
 }
 
 exports.announcements = {
-  addAnnouncement: addAnnouncement
+  addAnnouncement: addAnnouncement,
+  getAnnouncements: getAnnouncements
 }
