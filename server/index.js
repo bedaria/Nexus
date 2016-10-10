@@ -3,9 +3,11 @@ const path       = require('path');
 const logger     = require('morgan')
 const bodyParser = require('body-parser');
 const cors       = require('cors');
-const db         = require('./config/db.js');
+const db         = require('./config/db');
 const app        = express();
-require('./models/models.js');
+
+// Routes
+const adminRoutes = require('./routes/admin');
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server);
@@ -22,6 +24,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
 app.use(express.static(path.join(__dirname, '/../src')));
+
+// Routing
+app.use('/api', adminRoutes);
 
 app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, 'index.html'));
