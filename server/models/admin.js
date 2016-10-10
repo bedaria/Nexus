@@ -1,4 +1,6 @@
 const db = require('../config/db');
+const password = require('../config/passwordTools.js');
+const jsonWebToken = require('jsonwebtoken');
 
 /* ------------------- TO DO LIST ------------------- */
 const addTodo = (req, res, todo) => {
@@ -46,9 +48,56 @@ const fetchAllTodos = (req, res, userId) => {
     });
 };
 
+
+/*------------------- SIGN IN/ SIGN UP ------------------- */
+
+const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
+  db.findOne({
+    where:{
+      username : loginUsername,
+      email    : loginEmail
+    },
+    attributes: ['id', 'firstName', 'lastName', 'email', 'username', 'password', 'profilePic', 'bio']
+  })
+    .then( foundUser => {
+      if(!foundUser) res.status(500).send('User not found.');
+      else {
+        password.checkPassword(loginPassword, user.password)
+          .then( successfulMatch => {
+            console.log("Successful login", successfulMatch);
+            const token = jsonWebToken.sign(user.dataValues, 'userDashboard');
+            res.json({
+              id: user.id,
+              firstName: user.firstName,
+              email: user.email,
+              username: user.username,
+              token: token,
+            });
+          })
+          .catch( error => console.log("Password hashing error: ", error) )
+      })
+    .catch( err => {
+      console.log('Error:', err);
+      res.status(500).send("Password do not match", err);
+    });
+}
+
+const signUp = (req, resp, newUser) => {
+  User.create(newUser) //saves to database
+    .then(inputs => {
+      res.status(200).send("USER INPUT SAVED", inputs);
+    })
+    .catch(err => {
+      console.log("ERROR", err)
+      res.status(500).send("Something inside of userController: ", err);
+    });
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
   delete: deleteTodoById,
-  fetchAll: fetchAllTodos
+  fetchAll: fetchAllTodos,
+  signUp: signUp,
+  signIn: signIn,
 }
