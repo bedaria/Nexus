@@ -11,7 +11,9 @@ const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 io.on('connection', socket => {
-  socket.on('announce', (announcementInfo) => io.emit('notification', announcementInfo));
+  socket.on('announce', (announcement) => {
+    io.emit('incomingAnnouncement', announcement);
+  });
 });
 
 // Utilities
