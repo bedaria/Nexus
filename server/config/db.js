@@ -35,10 +35,6 @@ const User = db.define('User', {
     type: Sequelize.STRING,
     allowNull: false
   },
-  cohortId: {
-    type: Sequelize.INTEGER,
-    allowNull: false
-  },
   profilePic: {
     type: Sequelize.STRING,
     allowNull: false
@@ -77,10 +73,12 @@ const Todo = db.define('Todo',
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo, { foreignKey: 'adminId' });
 Cohort.hasMany(User);
-Cohort.hasMany(Announcement, {as: 'Announcements'});
-//announcement should have a cohortId
-//cohort gets accessors getAnnouncement, setAnnouncement
+Cohort.hasMany(Announcement);
 
+db.sync()
+  .then(() => console.log("Models successfully synced."))
+  .catch(() => console.log("Couldn't sync models."));
+  
 module.exports = {
   User,
   Cohort,
