@@ -12,8 +12,8 @@ export class MessageService {
     this.socket.emit('announce', announcementInfo);
   }
 
-  receiveNotification(callback) {
-    this.socket.on('notification', (notification) => {
+  receiveAnnouncement(callback) {
+    this.socket.on('incomingAnnouncement', (notification) => {
       callback(notification);
     })
   }

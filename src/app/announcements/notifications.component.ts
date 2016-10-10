@@ -15,12 +15,12 @@ export class NotificationComponent {
 
   constructor(private messageService: MessageService) {};
 
-  receiveNotification(): void {
+  receiveAnnouncement(): void {
     let callback = (data) => {
       this.showNotification = true;
       this.notification = data
       setTimeout(() => (this.showNotification = false), 1000)
     }
-    this.messageService.receiveNotification(callback);
+    this.messageService.receiveAnnouncement(callback);
   }
 }
