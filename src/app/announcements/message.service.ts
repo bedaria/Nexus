@@ -16,15 +16,6 @@ export class MessageService {
       .map((r: Response) => r.json().message)
   }
 
-  getAnnouncements(): Observable<Message[]> {
-    return this.http
-      .get('/api/admin/announcements')
-      .map((r: Response) => {
-        console.log("r.json: ", r.json())
-        r.json()
-      })
-  }
-
   submitAnnouncement(announcementInfo): void {
     this.socket.emit('announce', announcementInfo);
   }

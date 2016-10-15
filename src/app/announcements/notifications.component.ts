@@ -16,6 +16,14 @@ export class NotificationComponent {
   ngOnInit(): void {
     let callback = (data) => (this.notifications.push(data));
     this.messageService.receiveAnnouncement(callback);
+    this.addInterval()
+  }
+
+  addInterval(): void {
+    setInterval(() => {
+      if(this.notifications.length)
+        this.notifications.shift()
+    }, 2500)
   }
 
 }
