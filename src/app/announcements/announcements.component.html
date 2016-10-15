@@ -1,12 +1,12 @@
 <form (ngSubmit)="submitAnnouncement()">
   <div>
-    <select [(ngModel)]="cohort" name="cohort" required>
+    <select [(ngModel)]="announcementInfo.cohort" name="cohort" required>
       <option *ngFor="let cohort of cohorts" [value]="cohort">{{cohort}}</option>
     </select>
   </div>
 
   <div>
-    <input [(ngModel)]="announcement" placeholder="Announcement" name="announcement" />
+    <input [(ngModel)]="announcementInfo.message" placeholder="Announcement" name="announcement" />
     <button type="submit">Announce</button>
   </div>
 <form>

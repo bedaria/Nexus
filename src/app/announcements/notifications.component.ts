@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MessageService } from './message.service';
 import { Message } from './message';
 
@@ -10,17 +10,12 @@ import { Message } from './message';
 })
 
 export class NotificationComponent {
-  notification: Message = new Message;
-  showNotification = false;
-
+  notifications: Message[] = [];
   constructor(private messageService: MessageService) {};
 
-  receiveAnnouncement(): void {
-    let callback = (data) => {
-      this.showNotification = true;
-      this.notification = data
-      setTimeout(() => (this.showNotification = false), 1000)
-    }
+  ngOnInit(): void {
+    let callback = (data) => (this.notifications.push(data));
     this.messageService.receiveAnnouncement(callback);
   }
+
 }

@@ -10,10 +10,19 @@ export class MessageService {
   socket = io('http://localhost:3000');
   constructor(private http: Http) {}
 
-  saveAnnouncement(announcement: Object): Observable<string> {
+  saveAnnouncement(announcement: Message): Observable<string> {
     return this.http
-      .post('/api/admin/announcements/addAnnouncement', announcement)
+      .post('/api/admin/announcements', announcement)
       .map((r: Response) => r.json().message)
+  }
+
+  getAnnouncements(): Observable<Message[]> {
+    return this.http
+      .get('/api/admin/announcements')
+      .map((r: Response) => {
+        console.log("r.json: ", r.json())
+        r.json()
+      })
   }
 
   submitAnnouncement(announcementInfo): void {

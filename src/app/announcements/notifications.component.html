@@ -1,4 +1,3 @@
-{{this.receiveAnnouncement()}}
-<div *ngIf="showNotification" class="notificationContainer">
+<div *ngFor="let notification of notifications">
   {{notification.cohort.toUpperCase()}}: {{notification.message}}
 </div>
