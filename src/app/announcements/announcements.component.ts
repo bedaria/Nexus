@@ -16,7 +16,7 @@ export class AnnouncementsComponent {
   constructor(private messageService: MessageService) {};
 
   submitAnnouncement(): void {
-    this.messageService.submitAnnouncement(this.announcementInfo);
     this.messageService.saveAnnouncement(this.announcementInfo);
+    this.messageService.submitAnnouncement(this.announcementInfo);
   }
 }
