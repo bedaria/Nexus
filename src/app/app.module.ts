@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { AnnouncementsComponent } from './announcements/announcements.component';
 import { NotificationComponent } from './announcements/notifications.component';
+import { UnseenAnnouncementsComponent } from './announcements/unseenAnnouncements.component';
 import { LoginComponent } from './login/login.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SignupComponent } from './signup/signup.component';
-
 
 @NgModule({
   declarations: [
@@ -19,6 +19,7 @@ import { SignupComponent } from './signup/signup.component';
     UserProfileComponent,
     AnnouncementsComponent,
     NotificationComponent,
+    UnseenAnnouncementsComponent,
     LoginComponent,
     TodoListComponent,
     SignupComponent
