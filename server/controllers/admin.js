@@ -23,12 +23,12 @@ const fetchAllTodos = (req, res) => {
   model.todos.fetchAll(req, res, userId);
 }
 
-const addAnnouncement = (req, res) => {
-  model.announcements.addAnnouncement(req, res);
-}
-
 const getAnnouncements = (req, res) => {
   model.announcements.getAnnouncements(req, res);
+}
+
+const addAnnouncement = (req, res) => {
+  model.announcements.addAnnouncement(req, res);
 }
 
 exports.todos = {
@@ -39,6 +39,6 @@ exports.todos = {
 }
 
 exports.announcements = {
-  addAnnouncement: addAnnouncement,
-  getAnnouncements: getAnnouncements
+  add: addAnnouncement,
+  fetchAll: getAnnouncements
 }

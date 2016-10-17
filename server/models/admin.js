@@ -47,6 +47,8 @@ const fetchAllTodos = (req, res, userId) => {
 };
 
 const addAnnouncement = (req, res) => {
+  console.log("inside addannouncements")
+
   const cohortId = (cohort) => {
     if(cohort.toLowerCase() === 'juniors')
       return 49
@@ -54,6 +56,8 @@ const addAnnouncement = (req, res) => {
       return 53
   }
 
+  // db.Cohort.create({cohort: 53}).then(() => console.log("cohort 53 successfully created"))
+  // db.Cohort.create({cohort: 49}).then(() => console.log("cohort 49 successfully created"));
   db.Cohort.findOne({
     where: {
       cohort: cohortId(req.body.cohort)

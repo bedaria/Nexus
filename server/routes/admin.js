@@ -8,6 +8,7 @@ router.delete('/admin/users/:userId/todos/:todoId', controller.todos.delete);
 router.get('/admin/users/:userId/todos', controller.todos.fetchAll);
 
 /*------------------- ANNOUNCEMENTS ----------------- */
-router.post('/admin/announcements', controller.announcements.addAnnouncement);
-router.get('/admin/announcements', controller.announcements.getAnnouncements);
+router.post('/admin/announcements', controller.announcements.add);
+router.get('/admin/announcements', controller.announcements.fetchAll);
+
 module.exports = router;
