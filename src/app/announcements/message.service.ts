@@ -11,8 +11,10 @@ export class MessageService {
   constructor(private http: Http) {}
 
   saveAnnouncement(announcement: Message): Observable<Message> {
-    console.log("saving announcement")
-    return this.http.post('/api/admin/announcements', announcement).map((r: Response) => r.json())
+    console.log("requesting: .post('/api/admin/announcements')with ", announcement)
+    return this.http.post('/api/admin/announcements', announcement)
+    .map((r: Response) => r.json())
+    .catch((error: any) => Observable.throw(error.json().error || "server error"));
   }
 
   submitAnnouncement(announcementInfo): void {
@@ -23,6 +25,7 @@ export class MessageService {
     return this.http
       .get('/api/admin/announcements')
       .map((r: Response) => r.json().announcements)
+      .catch((error: any) => Observable.throw(error.json().error || "server error"));
   }
 
   receiveAnnouncement(callback) {
