@@ -1,10 +1,21 @@
-const db = require('../config/db');
-const password = require('../config/passwordTools.js');
+const db           = require('../config/db');
+const password     = require('../config/passwordTools.js');
 const jsonWebToken = require('jsonwebtoken');
 
 /* ------------------- TO DO LIST ------------------- */
+const fetchAllTodos = (req, res) => {
+  console.log('Inside fetchAllTodos in model');
+  db.Todo.findAll()
+    .then((todos) => {
+      res.status(200).send(todos);
+    })
+    .catch((err) => {
+      res.status(500).send(err.message);
+    });
+};
+
 const addTodo = (req, res, todo) => {
-  console.log('Inside addTodo:', todo);
+  console.log('Inside addTodo in model:', todo);
   db.Todo.create(todo)
     .then((todo) => {
       res.status(200).send(todo);
@@ -14,43 +25,25 @@ const addTodo = (req, res, todo) => {
     });
 };
 
-const updateTodoById = (req, res, todo, todoId) => {
-  console.log('Inside updateTodoById:', todo);
-  db.Todo.update(todo, { where: { id: todoId } })
-    .then(() => {
-      res.status(200).send('Successfully updated todo item:', todoId);
-    })
-    .catch((err) => {
-      res.status(500).send('Failed to update todo item:', todoId);
-    });
-};
-
-const deleteTodoById = (req, res, todoId) => {
-  console.log('Inside deleteTodoById');
+const deleteTodo = (req, res, todoId) => {
+  console.log('Inside deleteTodo in model');
   db.Todo.findById(todoId)
     .then((todo) => {
       todo.destroy();
-      res.status(200).send('Successfully deleted todo item:', todo.id);
+      res.status(200).send('Successfully deleted todo item:', todo);
     })
     .catch((err) => {
       res.status(500).send('Failed to delete todo item:', todo.id);
     });
 };
 
-const fetchAllTodos = (req, res, userId) => {
-  console.log('Inside fetchAllTodos');
-  db.Todo.findAll({ where: { adminId: userId } })
-    .then((todos) => {
-      res.status(200).send(todos);
-    })
-    .catch((err) => {
-      res.status(500).send(err.message);
-    });
-};
-
+exports.todos = {
+  fetchAll: fetchAllTodos,
+  add: addTodo,
+  delete: deleteTodo,
+}
 
 /*------------------- SIGN IN/ SIGN UP ------------------- */
-
 const signIn = (req, res, loginUsername, loginEmail, loginPassword) => {
   db.User.findOne({
     where:{
@@ -94,15 +87,8 @@ const signUp = (req, res, newUser) => {
       res.status(400).send(err);
     });
 };
+
 exports.auth = {
   signUp: signUp,
   signIn: signIn,
 }
-
-exports.todos = {
-  add: addTodo,
-  update: updateTodoById,
-  delete: deleteTodoById,
-  fetchAll: fetchAllTodos,
-}
-
