@@ -17,4 +17,14 @@ export class TodoService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  addTodo(todo: string): Observable<Todo> {
+    let body = JSON.stringify({ todo });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.todoUrl, body, options)
+                    .map((res: Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

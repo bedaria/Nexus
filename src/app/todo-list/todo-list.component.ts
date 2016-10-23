@@ -27,5 +27,15 @@ export class TodoListComponent implements OnInit {
         error => console.log(error)
       );
   }
+
+  addTodo(todo: string) {
+    if (!todo) { return; }
+    this.todoService.addTodo(todo)
+      .subscribe(
+        todo => this.todos.push(todo),
+        error => console.log(error)
+      );
+    this.todoService.getTodos();
+  }
   
 }
