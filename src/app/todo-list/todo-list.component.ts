@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
-import {Todo} from './todo';
-import {TodoService} from './todo.service';
+import { Component, OnInit } from '@angular/core';
+
+import { Todo } from './todo';
+import { TodoService } from './todo.service';
 
 @Component({
   selector: 'todo-list',
@@ -8,25 +9,23 @@ import {TodoService} from './todo.service';
   styleUrls: ['./todo-list.component.css'],
   providers: [TodoService]
 })
-export class TodoListComponent {
-  newTodo: Todo = new Todo();
+export class TodoListComponent implements OnInit {
+
+  todos: Todo[];
+  mode = 'Observable';
 
   constructor(private todoService: TodoService) { }
 
-  addTodo() {
-    this.todoService.addTodo(this.newTodo);
-    this.newTodo = new Todo();
+  ngOnInit() {
+    this.getTodos();
   }
 
-  toggleTodoComplete(todo) {
-    this.todoService.toggleTodoComplete(todo);
+  getTodos() {
+    this.todoService.getTodos()
+      .subscribe(
+        todos => this.todos = todos,
+        error => console.log(error)
+      );
   }
-
-  removeTodo(todo) {
-    this.todoService.deleteTodoById(todo.id);
-  }
-
-  get todos() {
-    return this.todoService.getAllTodos();
-  }
+  
 }
