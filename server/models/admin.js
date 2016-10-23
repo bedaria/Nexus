@@ -29,11 +29,11 @@ const deleteTodo = (req, res, todoId) => {
   console.log('Inside deleteTodo in model');
   db.Todo.findById(todoId)
     .then((todo) => {
+      res.status(200).send(todo);
       todo.destroy();
-      res.status(200).send('Successfully deleted todo item:', todo);
     })
     .catch((err) => {
-      res.status(500).send('Failed to delete todo item:', todo.id);
+      res.status(500).send('Failed to delete todo item:', todo);
     });
 };
 

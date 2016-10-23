@@ -12,6 +12,7 @@
         <div class="todo-view">
           <input class="toggle" type="checkbox">
           <label>{{todo.todo}}</label>
+          <button (click)="removeTodo(todo.id); $event.stopPropagation()">x</button>
         </div>
       </li>
     </ul>

@@ -37,5 +37,14 @@ export class TodoListComponent implements OnInit {
       );
     this.todoService.getTodos();
   }
-  
+
+  removeTodo(id: number): void {
+    this.todoService.removeTodo(id)
+      .subscribe(
+        todo => this.todos = this.todos.filter(t => t.id !== id),
+        error => console.log(error)
+      );
+    this.todoService.getTodos();
+  }
+
 }

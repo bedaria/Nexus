@@ -27,4 +27,10 @@ export class TodoService {
                     .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  removeTodo(id: number): Observable<Todo> {
+    return this.http.delete(`${this.todoUrl}/${id}`)
+                    .map((res: Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }
