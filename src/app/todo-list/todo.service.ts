@@ -1,61 +1,36 @@
 import { Injectable } from '@angular/core';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
+
 import { Todo } from './todo';
 
 @Injectable()
 export class TodoService {
-  // Used to keep track of todo items, automatically
-  // incremented when addTodo is called
-  lastId: number = 0;
 
-  // Temporarily store todo's in memory
-  todos: Todo[] = [];
+  constructor(private http: Http) { }
 
-  constructor() { }
+  private todoUrl = '/api/admin/user/todos';
 
-  // POST /api/users/:userId/todos
-  addTodo(todo: Todo): TodoService {
-    if (!todo.id) {
-      todo.id = ++this.lastId;
-    }
-    this.todos.push(todo);
-    return this;
+  getTodos(): Observable<Todo[]> {
+    return this.http.get(this.todoUrl)
+                    .map((res: Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // GET /api/users/:userId/todos/:id
-  getTodoById(id: number): Todo {
-    return this.todos
-      .filter(todo => todo.id === id)
-      .pop();
+  addTodo(todo: string): Observable<Todo> {
+    let body = JSON.stringify({ todo });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.todoUrl, body, options)
+                    .map((res: Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // PUT /api/users/:userId/todos/:id
-  updateTodoById(id: number, values: Object = {}): Todo {
-    let todo = this.getTodoById(id);
-    if (!todo) {
-      return null;
-    }
-    Object.assign(todo, values);
-    return todo;
+  removeTodo(id: number): Observable<Todo> {
+    return this.http.delete(`${this.todoUrl}/${id}`)
+                    .map((res: Response) => res.json())
+                    .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-  // Mark todo items as complete
-  toggleTodoComplete(todo: Todo) {
-    console.log('Todo item is complete!');
-    let updatedTodo = this.updateTodoById(todo.id, {
-      complete: !todo.complete
-    });
-    return updatedTodo;
-  }
-
-  // DELETE /api/users/:userId/todos/:id
-  deleteTodoById(id: number): TodoService {
-    this.todos = this.todos
-      .filter(todo => todo.id !== id);
-    return this;
-  }
-
-  // GET /api/users/:userId/todos
-  getAllTodos(): Todo[] {
-    return this.todos;
-  }
 }

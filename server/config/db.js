@@ -1,12 +1,11 @@
 const Sequelize = require('sequelize');
 const config    = require('./config');
-const db = new Sequelize(config.uri);
+const db        = new Sequelize(config.uri);
 
 db
   .authenticate()
   .then(success => console.log('Sequelize connection has been established successfully.'))
   .catch(err => console.log('Unable to connect to Sequelize database:', err));
-
 
 /* ------------------- USER ------------------- */
 const User = db.define('User', {
@@ -65,8 +64,7 @@ const Todo = db.define('Todo',
     todo: {
       type: Sequelize.STRING,
       allowNull: false
-    },
-    userId: Sequelize.INTEGER
+    }
   },
   {
     tableName: 'Todos',
@@ -75,10 +73,11 @@ const Todo = db.define('Todo',
 );
 
 /* ------------------- ASSOCIATIONS ------------------- */
-User.hasMany(Todo, { foreignKey: 'adminId' });
+User.hasMany(Todo);
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
 
+// db.sync({ force: true }).then(() => console.log('Models synced'));
 
 module.exports = {
   User,
