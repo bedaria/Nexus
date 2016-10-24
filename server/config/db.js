@@ -72,13 +72,15 @@ const Todo = db.define('Todo',
 
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo, { foreignKey: 'adminId' });
-Cohort.hasMany(User);
+// Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
+
+// Cohort.belongsToMany(Announcement, {through: 'CohortAnnouncements'});
 
 db.sync()
   .then(() => console.log("Models successfully synced."))
   .catch(() => console.log("Couldn't sync models."));
-  
+
 module.exports = {
   User,
   Cohort,

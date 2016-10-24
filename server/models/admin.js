@@ -36,7 +36,6 @@ const deleteTodoById = (req, res, todoId) => {
 };
 
 const fetchAllTodos = (req, res, userId) => {
-  console.log('Inside fetchAllTodos');
   db.Todo.findAll({ where: { adminId: userId } })
     .then((todos) => {
       res.status(200).send(todos);
@@ -47,42 +46,18 @@ const fetchAllTodos = (req, res, userId) => {
 };
 
 const addAnnouncement = (req, res) => {
-  console.log("inside addannouncements")
-
   const cohortId = (cohort) => {
     if(cohort.toLowerCase() === 'juniors')
       return 49
     else
       return 53
   }
-
-  // db.Cohort.create({cohort: 53}).then(() => console.log("cohort 53 successfully created"))
-  // db.Cohort.create({cohort: 49}).then(() => console.log("cohort 49 successfully created"));
-  db.Cohort.findOne({
-    where: {
-      cohort: cohortId(req.body.cohort)
-    }
-  })
-  .then((cohort) => {
-    db.Announcement.create({announcement: req.body.message, CohortId: cohort.id})
-      .then((announcement) =>
-        res.status(200).json({message: "got a new Message",
-                              messageId: announcement.id})
-      )
-      .catch((err) => res.status(500).send("error: ", err))
-    })
-  .catch((err) => res.status(500).send("ERROR: ", err))
-    // cohort.addAnnouncement({"announcement": req.body.message})
-    // .then(() => {
-    //   console.log("announcement created")
-    //   res.status(304).send()
-    // })
-    // .catch((err) => {
-    //   console.log("did not add announcement: ", err)
-    //   res.status(500).send("error")
-    // })
-
-};
+  // db.Cohort.create({cohort: 49});
+  // db.Cohort.create({cohort: 53});
+  db.Announcement.create({announcement: req.body.message, CohortId: cohortId(req.body.cohort)})
+    .then(() => res.status(200).send("announcement created"))
+    .catch(() => res.status(500).send("server error"))
+});
 
 const getAnnouncements = (req, res) => {
   db.Announcement.findAll()

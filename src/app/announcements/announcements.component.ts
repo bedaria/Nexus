@@ -17,7 +17,7 @@ export class AnnouncementsComponent {
 
   submitAnnouncement(): void {
     this.messageService.saveAnnouncement(this.announcementInfo)
-    .subscribe(d => console.log("and of course"))
+    .subscribe(d => console.log("added announcement"));
     this.messageService.submitAnnouncement(this.announcementInfo);
   }
 }
