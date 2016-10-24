@@ -1,18 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 
 import { Todo } from './todo';
 import { TodoService } from './todo.service';
 
 @Component({
   selector: 'todo-list',
+  encapsulation: ViewEncapsulation.None,
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.css'],
+  styleUrls: ['./todo-list.scss'],
   providers: [TodoService]
 })
 export class TodoListComponent implements OnInit {
 
-  todos: Todo[];
   mode = 'Observable';
+  todos: Todo[];
+  public newTodoText: string = '';
 
   constructor(private todoService: TodoService) { }
 
@@ -28,13 +30,14 @@ export class TodoListComponent implements OnInit {
       );
   }
 
-  addTodo(todo: string) {
-    if (!todo) { return; }
-    this.todoService.addTodo(todo)
+  addTodo($event) {
+    if (!this.newTodoText) { return; }
+    this.todoService.addTodo(this.newTodoText)
       .subscribe(
         todo => this.todos.push(todo),
         error => console.log(error)
       );
+    this.newTodoText = '';
     this.todoService.getTodos();
   }
 
