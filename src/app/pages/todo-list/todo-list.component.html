@@ -1,0 +1,20 @@
+<div class="todo-list-container">
+  <input type="text" class="form-control task-todo" placeholder="What do you need to get done?" (keyup.enter)="addTodo($event)" [(ngModel)]="newTodoText"/>
+
+  <i (click)="addTodo($event)" class="add-item-icon ion-plus-round"></i>
+
+  <ul class="todo-list">
+    <li *ngFor="let todo of todos" [ngClass]="{checked: todo.isChecked, active: todo.isActive}" (mouseenter)="todo.isActive=true" (mouseleave)="todo.isActive=false">
+
+      <i class="mark" [ngStyle]="{ 'background-color': '#22A7F0' }"></i>
+
+      <label class="todo-checkbox custom-checkbox custom-input-success">
+        <input type="checkbox" [(ngModel)]="todo.isChecked">
+        <span class="cut-with-dots">{{todo.todo}}</span>
+      </label>
+
+      <i class="remove-todo ion-ios-close-empty" (click)="removeTodo(todo.id)"></i>
+
+    </li>
+  </ul>
+</div>
