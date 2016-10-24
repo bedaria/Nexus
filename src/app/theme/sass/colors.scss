@@ -1,0 +1,14 @@
+$default: #000000; // default colors for layout
+$default-text: $default;
+$content-text: $default-text; // content text color on card, panels, form, etc
+$help-text: $default-text; // additional text color for hits
+$disabled: rgba(255, 255, 255, 0.4); // color for disabled state
+
+$border: rgba(255, 255, 255, 0.5); // border color
+$input-border: rgba(255, 255, 255, 0.6); // input border color
+$input-background: rgba(255, 255, 255, 0.1); // input border color for hover
+
+// color scheme
+$primary: #00abff !default;
+$primary-light: tint($primary, 30%);
+$primary-bg: tint($primary, 20%);

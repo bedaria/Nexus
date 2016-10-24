@@ -6,7 +6,7 @@ import './rxjs-operators';
   selector: 'app-root',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styles: [require('./app.scss')]
 })
 export class AppComponent {
   title = 'Nexus Dashboard';

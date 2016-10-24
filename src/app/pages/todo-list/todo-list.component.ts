@@ -7,7 +7,7 @@ import { TodoService } from './todo.service';
   selector: 'todo-list',
   encapsulation: ViewEncapsulation.None,
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.scss'],
+  styles: [require('./todo-list.scss')],
   providers: [TodoService]
 })
 export class TodoListComponent implements OnInit {
