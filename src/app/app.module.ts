@@ -6,16 +6,20 @@ import { routing } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/login/login.component';
-import { TodoListComponent } from './pages/todo-list/todo-list.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { TodoListComponent } from './dashboard/todo-list/todo-list.component';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
+import { FullCalendarComponent } from './dashboard/calendar/full-calendar/full-calendar.component';
 import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    SignupComponent,
     TodoListComponent,
-    SignupComponent
+    CalendarComponent,
+    FullCalendarComponent
   ],
   imports: [
     BrowserModule,
