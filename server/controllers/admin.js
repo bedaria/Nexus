@@ -31,6 +31,10 @@ const addAnnouncement = (req, res) => {
   model.announcements.addAnnouncement(req, res);
 }
 
+const addTable = (req, res) => {
+  model.table.add(req, res);
+}
+
 exports.todos = {
   add: addTodo,
   update: updateTodoById,
@@ -41,4 +45,8 @@ exports.todos = {
 exports.announcements = {
   add: addAnnouncement,
   fetchAll: getAnnouncements
+}
+
+exports.table = {
+  add: addTable
 }

@@ -45,19 +45,18 @@ const fetchAllTodos = (req, res, userId) => {
     });
 };
 
+/*--------------------- ANNOUNCEMENTS -----------------*/
 const addAnnouncement = (req, res) => {
   const cohortId = (cohort) => {
     if(cohort.toLowerCase() === 'juniors')
-      return 49
+      return 1
     else
-      return 53
+      return 2
   }
   // db.Cohort.create({cohort: 49});
   // db.Cohort.create({cohort: 53});
   db.Announcement.create({announcement: req.body.message, CohortId: cohortId(req.body.cohort)})
-    .then(() => res.status(200).send("announcement created"))
-    .catch(() => res.status(500).send("server error"))
-});
+}
 
 const getAnnouncements = (req, res) => {
   db.Announcement.findAll()
@@ -66,6 +65,28 @@ const getAnnouncements = (req, res) => {
       announcements.map(announcement => announcement.dataValues.announcement)})
   })
   .catch((err) => console.log("ERROR: ", err))
+}
+
+/*--------------------- TABLES ------------------------------ */
+const addTable = (req, res) => {
+ console.log("req.body: ", req.body)
+  var data = req.body.data;
+
+  var name = req.body.name;
+  var id = req.body.id;
+
+  Promise.all(data.map(row => {
+    console.log("row: ", row)
+    db.TableRow.create({tableName: name, tableRow: row.toString(), tableId: id})
+    }))
+  .then(results => {
+    res.status(200).send("table created:)")
+  })
+  .catch(error => console.log("boo"))
+}
+
+exports.table = {
+  add: addTable
 }
 
 exports.todos = {

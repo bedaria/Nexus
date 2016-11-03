@@ -11,4 +11,7 @@ router.get('/admin/users/:userId/todos', controller.todos.fetchAll);
 router.post('/admin/announcements', controller.announcements.add);
 router.get('/admin/announcements', controller.announcements.fetchAll);
 
+/*------------------- TABLES ------------------------*/
+router.post('/admin/table', controller.table.add);
+
 module.exports = router;

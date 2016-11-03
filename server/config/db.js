@@ -70,12 +70,20 @@ const Todo = db.define('Todo',
   }
 );
 
+/*-----------------Table---------------------*/
+const TableRow = db.define('table',
+  {
+    tableName: Sequelize.STRING,
+    tableRow: Sequelize.STRING,
+    tableId: Sequelize.STRING
+  }
+);
+
+
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo, { foreignKey: 'adminId' });
-// Cohort.hasMany(User);
+Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
-
-// Cohort.belongsToMany(Announcement, {through: 'CohortAnnouncements'});
 
 db.sync()
   .then(() => console.log("Models successfully synced."))
@@ -85,5 +93,6 @@ module.exports = {
   User,
   Cohort,
   Announcement,
-  Todo
+  Todo,
+  TableRow
 };

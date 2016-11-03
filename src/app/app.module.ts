@@ -12,6 +12,7 @@ import { UnseenAnnouncementsComponent } from './announcements/unseenAnnouncement
 import { LoginComponent } from './login/login.component';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { SignupComponent } from './signup/signup.component';
+import { SpreadsheetComponent } from './spreadsheet/spreadsheet.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SignupComponent } from './signup/signup.component';
     UnseenAnnouncementsComponent,
     LoginComponent,
     TodoListComponent,
-    SignupComponent
+    SignupComponent,
+    SpreadsheetComponent
   ],
   imports: [
     BrowserModule,
