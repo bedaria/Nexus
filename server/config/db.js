@@ -72,16 +72,26 @@ const Todo = db.define('Todo',
   }
 );
 
+/*-----------------Table---------------------*/
+const TableRow = db.define('tableRow',
+  {
+    tableName: Sequelize.STRING,
+    tableRow: Sequelize.STRING,
+    tableId: Sequelize.STRING
+  }
+);
+
 /* ------------------- ASSOCIATIONS ------------------- */
 User.hasMany(Todo);
 Cohort.hasMany(User);
 Cohort.hasMany(Announcement);
 
-// db.sync({ force: true }).then(() => console.log('Models synced'));
+db.sync().then(() => console.log('Models synced'));
 
 module.exports = {
   User,
   Cohort,
   Announcement,
-  Todo
+  Todo,
+  TableRow
 };

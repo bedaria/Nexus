@@ -57,3 +57,11 @@ exports.auth = {
   signIn: signIn,
   signUp: signUp,
 }
+
+const addTable = (req, res) => {
+  model.table.add(req, res);
+}
+
+exports.table = {
+  add: addTable
+}

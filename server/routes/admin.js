@@ -11,6 +11,9 @@ router.delete('/admin/user/todos/:todoId', controller.todos.delete);
 router.post('/admin/user/signup', controller.auth.signUp);
 router.post('/admin/user/signin', controller.auth.signIn);
 
+/*------------------ TABLES ------------------*/
+router.post('/admin/table', controller.table.add);
+
 /* 404 Redirection */
 router.get('*', (req, res) => res.sendStatus(404));
 

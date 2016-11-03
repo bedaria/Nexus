@@ -92,3 +92,24 @@ exports.auth = {
   signUp: signUp,
   signIn: signIn,
 }
+
+/*--------------------- TABLES ------------------------------ */
+const addTable = (req, res) => {
+  var data = req.body.data;
+  var name = req.body.name;
+  var id = req.body.id;
+console.log("inside addTAble")
+  db.Table.create({tableName: name, tableId: id})
+  Promise.all(data.map(row =>
+    db.TableRow.create({tableName: name, tableRow: row.toString(), tableId: id}))
+  )
+  .then(results => {
+    // console.log("results: ", results)
+    res.status(200).send({saved: true})
+  })
+  .catch(error => console.log("boo"))
+}
+
+exports.table = {
+  add: addTable
+}
