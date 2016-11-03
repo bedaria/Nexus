@@ -14,6 +14,7 @@ export class SpreadsheetComponent {
   rows: Array<number> = [1, 2, 3, 4];
   data: Array<any> = [[], [], [], []];
   tableName: string;
+  saved: boolean = false;
 
   constructor(private spreadsheetService: SpreadsheetService) {};
 
@@ -33,7 +34,7 @@ export class SpreadsheetComponent {
       var table = toTable(this.data)
       var tableData = {name: this.tableName, data: table, id: 1}
       this.spreadsheetService.saveTable(tableData)
-        .subscribe(data => alert("Table Saved!"));
+        .subscribe(data => this.saved = true);
     }
   }
 }

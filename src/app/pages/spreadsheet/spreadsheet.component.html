@@ -1,7 +1,7 @@
 <button (click)="saveTable()"> Save Data</button>
 <button (click)="addColumn()"> Add Column </button>
 <button (click)="addRow()"> Add Row </button>
-TableName<input class="tableName" type="text" [(ngModel)]="tableName">
+<span class="tableName"> TableName:<input type="text" [(ngModel)]="tableName"> <span *ngIf="saved"> Saved </span> </span>
 <table>
   <tr *ngFor="let row of rows">
     <td *ngFor="let column of columns">

@@ -9,7 +9,7 @@ export class SpreadsheetService {
 
   saveTable(tableData): Observable<String> {
     return this.http.post('/api/admin/table', tableData)
-      .map((r: Response) => r.json())
+      .map((r: Response) => r)
       .catch((error: any) => Observable.throw(error.json().error || "server error"))
   }
 }
