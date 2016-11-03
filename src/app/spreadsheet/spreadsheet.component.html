@@ -1,0 +1,10 @@
+<button (click)="displayTable()"> Save Data</button>
+<button (click)="addColumn()"> Add Column </button>
+<button (click)="addRow()"> Add Row </button>
+<table>
+  <tr *ngFor="let row of rows">
+    <td *ngFor="let column of columns">
+      <input type="text" [(ngModel)]="data[row-1][column-1]">
+    </td>
+  </tr>
+</table>
