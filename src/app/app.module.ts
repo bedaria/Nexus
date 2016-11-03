@@ -11,6 +11,7 @@ import { TodoListComponent } from './dashboard/todo-list/todo-list.component';
 import { CalendarComponent } from './dashboard/calendar/calendar.component';
 import { FullCalendarComponent } from './dashboard/calendar/full-calendar/full-calendar.component';
 import { UserService } from './user.service';
+import { SpreadsheetComponent } from './pages/spreadsheet/spreadsheet.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { UserService } from './user.service';
     SignupComponent,
     TodoListComponent,
     CalendarComponent,
-    FullCalendarComponent
+    FullCalendarComponent,
+    SpreadsheetComponent
   ],
   imports: [
     BrowserModule,
